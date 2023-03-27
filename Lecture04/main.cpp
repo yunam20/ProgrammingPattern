@@ -12,14 +12,11 @@ int main()
 		if (_kbhit())
 		{
 			key = _getch();
-			if(key==ESC)
-            		{
-                		std::cout<<"esc, fuck off"<<std::endl;
-                		break;
-            		}
+			if(key==ESC) break;
 			else std::cout<<"fucking key"<<std::endl;
 		}
 	}
 
+	std::cout<<"esc, fuck off"<<std::endl;
 	return 0;
 }
