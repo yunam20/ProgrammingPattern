@@ -54,15 +54,25 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+//스테이지 생성 코드
 int print_game_screen(int stage_width, int stage_height)
 {
+    for (int i = 0; i <= stage_height; i++) {
+        if(i == 0 or i == stage_height)
+        {
+            for (int j = 0; j <= stage_width; j++) std::cout << "*";
+            std::cout << "" << std::endl;
+        }
+        else
+        {
+            std::cout << "*";
+            for (int j = 0; j <= (stage_width-2); j++) std::cout << " ";
+            std::cout << "*" << std::endl;
+        }
+    }
+
     gotoxy(5, 5);
     std::cout << "^^";
-
-    /*
-    for (int i = 0; i <= stage_width; i++) {
-        
-    }*/
 
     return 0;
 }
@@ -71,6 +81,7 @@ int main()
 {
     int game_state = 0;
     int is_game_running = 1;
+    int xnum, ynum;
 
     while (is_game_running == 1)
     {
@@ -84,6 +95,12 @@ int main()
             switch (key_input)
             {
             case '1':
+                while (1) {
+                    std::cout << "너비, 높이값을 입력하세요 (10 이상): ";
+                    std::cin >> xnum; std::cin >> ynum;
+                    if (xnum >= 10 and ynum >= 10) break;
+                    else std::cout << "잘못된 값을 입력했습니다." << std::endl;
+                }
                 game_state = 1;
                 break;
             case '2':
@@ -102,7 +119,7 @@ int main()
             }
             break;
         case 1:
-            print_game_screen(10, 10);
+            print_game_screen(xnum, ynum);
             key_input = _getch();
             break;
         case 2:
