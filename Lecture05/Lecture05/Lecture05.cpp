@@ -57,16 +57,16 @@ void gotoxy(int x, int y)
 //스테이지 생성 코드
 int print_game_screen(int stage_width, int stage_height)
 {
-    for (int i = 0; i <= stage_height; i++) {
-        if(i == 0 or i == stage_height)
+    for (int i = 1; i <= stage_height; i++) {
+        if(i == 1 or i == stage_height)
         {
-            for (int j = 0; j <= stage_width; j++) std::cout << "*";
+            for (int j = 1; j <= stage_width; j++) std::cout << "*";
             std::cout << "" << std::endl;
         }
         else
         {
             std::cout << "*";
-            for (int j = 0; j <= (stage_width-2); j++) std::cout << " ";
+            for (int j = 1; j <= (stage_width-2); j++) std::cout << " ";
             std::cout << "*" << std::endl;
         }
     }
