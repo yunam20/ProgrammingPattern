@@ -55,6 +55,7 @@ void gotoxy(int x, int y)
 }
 
 //스테이지 생성 코드
+/*
 int print_game_screen(int stage_width, int stage_height)
 {
     for (int i = 1; i <= stage_height; i++) {
@@ -71,6 +72,25 @@ int print_game_screen(int stage_width, int stage_height)
         }
     }
 
+    gotoxy(5, 5);
+    std::cout << "^^";
+
+    return 0;
+}*/
+
+//개선된 심플 코드
+int print_game_screen(int stage_width, int stage_height)
+{
+    // 윗줄 출력
+    std::cout << std::string(stage_width, '*') << '\n';
+    // 가운데 줄 출력
+    for (int i = 2; i < stage_height; i++) {
+        std::cout << '*' << std::string(stage_width - 2, ' ') << "*\n";
+    }
+    // 아랫줄 출력
+    std::cout << std::string(stage_width, '*') << '\n';
+
+    // 좌표 (5,5)에 ^^ 출력
     gotoxy(5, 5);
     std::cout << "^^";
 
