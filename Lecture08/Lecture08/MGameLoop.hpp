@@ -1,10 +1,10 @@
-//Å° ¼³Á¤
+ï»¿//í‚¤ ì„¤ì •
 #define KEY_EXIT 27
 #define KEY_ENTER 13
 #define KEY_RIGHT 'd'
 #define KEY_LEFT 'a'
 
-//»ö»ó ¼³Á¤
+//ìƒ‰ìƒ ì„¤ì •
 #define ANSI_COLOR_RED      "\x1b[31m"
 #define ANSI_COLOR_GREEN    "\x1b[32m"
 #define ANSI_COLOR_YELLOW   "\x1b[33m"
@@ -25,9 +25,9 @@ namespace MuSoeun
 
 	void gotoxy(int x, int y)
 	{
-		//x, y ÁÂÇ¥ ¼³Á¤
+		//x, y ì¢Œí‘œ ì´ë™
 		COORD pos{ x, y };
-		//Ä¿¼­ ÀÌµ¿
+		//ì»¤ì„œ ì´ë™
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	}
 
@@ -36,24 +36,25 @@ namespace MuSoeun
 	public:
 
 		bool isGameRunning = false;
+		bool isEnter = false;
 
-		void Initialize() //ÃÊ±âÈ­
+		void Initialize() //ì´ˆê¸°í™”
 		{
 			isGameRunning = true;
 			gotoxy(0, 10);
-			cout << ANSI_COLOR_MAGENTA "ÃÊ±âÈ­ ¿Ï·á" << endl;
+			cout << ANSI_COLOR_MAGENTA "ì´ˆê¸°í™” ì™„ë£Œ" << endl;
 		}
 
 		void Release()
 		{
 			gotoxy(0, 10);
-			cout << ANSI_COLOR_MAGENTA "½Ã½ºÅÛ ÇØÁ¦ ¿Ï·á" << endl;
+			cout << ANSI_COLOR_MAGENTA "ì‹œìŠ¤í…œ í•´ì œ ì™„ë£Œ" << endl;
 		}
 
 		void Update()
 		{
 			gotoxy(0, 10);
-			cout << ANSI_COLOR_MAGENTA "¾÷µ¥ÀÌÆ® Áß ¿Ï·á" << endl;
+			cout << ANSI_COLOR_MAGENTA "ì—…ë°ì´íŠ¸ ì¤‘ ì™„ë£Œ" << endl;
 
 			if (_kbhit())
 			{
@@ -64,7 +65,7 @@ namespace MuSoeun
 		void Render()
 		{
 			gotoxy(0, 10);
-			cout << ANSI_COLOR_MAGENTA "·»´õ¸µ ¿Ï·á" << endl;
+			cout << ANSI_COLOR_MAGENTA "ëœë”ë§ ì™„ë£Œ" << endl;
 		}
 
 		MGameLoop() {};
@@ -87,20 +88,39 @@ namespace MuSoeun
 		{
 			switch (input_key)
 			{
-			case KEY_LEFT: //¿ŞÂÊ
-				gotoxy(2, 5);
-				cout << ANSI_COLOR_YELLOW "¿ŞÂÊ!" << endl;
-				break;
-			case KEY_RIGHT: //¿À¸¥ÂÊ
-				gotoxy(2, 5);
-				cout << ANSI_COLOR_YELLOW "¿À¸¥ÂÊ!" << endl;
-				break;
-			case KEY_EXIT: //°ÔÀÓ Á¾·áÅ°, ÇÑ¹ø ´©¸£¸é Á¤Áö, µÎ¹ø ´©¸£¸é Á¾·á
+			case KEY_EXIT:
+				isEnter = true;
 				gotoxy(2, 12);
-				cout << ANSI_COLOR_YELLOW "Á¤¸» °ÔÀÓÀ» Á¾·áÇÏ½Ã°Ú½À´Ï±î?" << endl;
+				cout << "ì •ë§ ê²Œì„ì„ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?" << endl;
 				gotoxy(2, 13);
-				cout << "ESC = Á¾·á, ±× ¿Ü ¾Æ¹«Å° = °è¼Ó" << endl;
-				if (_getch() == KEY_EXIT) isGameRunning = false;
+				cout << ANSI_COLOR_YELLOW "[í™•ì¸]";
+				cout << ANSI_COLOR_MAGENTA "                [ì·¨ì†Œ]" << endl;
+				gotoxy(2, 13);
+				while (true) {
+					char ch = _getch();
+					if (ch == KEY_ENTER)
+					{
+						if (isEnter) isGameRunning = false;
+						system("cls");
+						break;
+					}
+					else if (ch == KEY_RIGHT)
+					{
+						isEnter = false;
+						gotoxy(2, 13);
+						cout << ANSI_COLOR_MAGENTA "[í™•ì¸]";
+						cout << ANSI_COLOR_YELLOW "                [ì·¨ì†Œ]" << endl;
+						gotoxy(24, 13);
+					}
+					if (ch == KEY_LEFT)
+					{
+						isEnter = true;
+						gotoxy(2, 13);
+						cout << ANSI_COLOR_YELLOW "[í™•ì¸]";
+						cout << ANSI_COLOR_MAGENTA "                [ì·¨ì†Œ]" << endl;
+						gotoxy(2, 13);
+					}
+				}
 				break;
 			default:
 				break;
