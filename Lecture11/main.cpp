@@ -20,7 +20,7 @@ namespace MuSoeun
 			{
 				screenBuf[(width + 1) + (width + 1) * i] = '\n';
 			}
-			screenBuf[(width + 1) + (width + 1) * (height-1) - 1] = '\n'
+			screenBuf[(width + 1) + (width + 1) * (height - 1) - 1] = '\n';
 		}
 
 		void ReleaseScreenBuf()
