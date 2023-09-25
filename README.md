@@ -1,6 +1,5 @@
 # 유한대학교 VR게임앱학과 ProgrammingPattern
 * 202027050
-* 남승현
 
 Personal Repository for Programming Pattern
 프로그래밍 패턴을 위한 개인 리포지트리입니다
