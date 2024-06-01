@@ -1,4 +1,4 @@
-# 유한대학교 VR게임앱학과 ProgrammingPattern
+# ProgrammingPattern
 * 202027050
 
 Personal Repository for Programming Pattern
